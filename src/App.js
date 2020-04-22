@@ -1,14 +1,20 @@
 import React, { Component } from "react";
 import styled from "styled-components";
 
+import NavBar from "./components/NavBar";
+import Counters from "./components/Counters";
+
 export default class App extends Component {
+  state = {
+    counter: 0,
+  };
+
   render() {
     return (
-      <div>
-        <Wrapper>
-          <div>Hello</div>
-        </Wrapper>
-      </div>
+      <Wrapper>
+        <NavBar />
+        <Counters />
+      </Wrapper>
     );
   }
 }
