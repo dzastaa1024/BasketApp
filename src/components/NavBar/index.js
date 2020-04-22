@@ -3,13 +3,14 @@ import styled from "styled-components";
 
 export default class NavBar extends Component {
   render() {
+    const {} = this.props;
     return (
       <Wrapper>
         <IconWrapper>
           <Icon></Icon>
         </IconWrapper>
         <CounterField></CounterField>
-        <Description></Description>
+        <Description>Items</Description>
       </Wrapper>
     );
   }
