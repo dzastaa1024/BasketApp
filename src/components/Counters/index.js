@@ -16,4 +16,8 @@ export default class Counters extends Component {
   }
 }
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  width: 11rem;
+  margin-left: 10rem;
+  margin-top: 2rem;
+`;

@@ -7,6 +7,7 @@ import Counters from "./components/Counters";
 export default class App extends Component {
   state = {
     values: [0, 0, 0, 0],
+    numerOfActive: 0,
     // itemCounters: 0,
     // cards: [
     //   { id: 1, value: 0 },
@@ -41,6 +42,15 @@ export default class App extends Component {
         values: valuesAfterDelete,
       });
     }
+    this.handleCount();
+  };
+
+  handleCount = () => {
+    const numerOfActive = this.state.values.filter((e) => Boolean(e)).length;
+
+    this.setState({
+      numerOfActive: numerOfActive,
+    });
   };
 
   // if (action === "delete") {
@@ -78,12 +88,11 @@ export default class App extends Component {
   // }
 
   render() {
-    const { itemCounters } = this.state;
-    console.log("state", this.state);
+    const { numerOfActive } = this.state;
 
     return (
       <Wrapper>
-        <NavBar />
+        <NavBar numerOfActive={numerOfActive} />
         <Counters handleClick={this.handleClick} cards={this.state.values} />
       </Wrapper>
     );
