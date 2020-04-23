@@ -3,14 +3,14 @@ import styled from "styled-components";
 
 export default class Card extends Component {
   render() {
-    const { handleClick, card } = this.props;
+    const { handleClick, card, index } = this.props;
 
     return (
       <Wrapper>
-        <Counter>{card.value === 0 ? "Zero" : card.value}</Counter>
-        <Button onClick={() => handleClick("add", card.id)}>+</Button>
-        <Button onClick={() => handleClick("substract", card.id)}>-</Button>
-        <Button onClick={() => handleClick("delete", card.id)}>Bin</Button>
+        <Counter>{card === 0 ? "Zero" : card}</Counter>
+        <Button onClick={() => handleClick("add", index)}>+</Button>
+        <Button onClick={() => handleClick("substract", index)}>-</Button>
+        <Button onClick={() => handleClick("delete", index)}>Bin</Button>
       </Wrapper>
     );
   }
