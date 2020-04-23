@@ -7,36 +7,65 @@ import Counters from "./components/Counters";
 export default class App extends Component {
   state = {
     itemCounters: 0,
-    rowOne: 0,
-    rowTwo: 0,
-    rowThree: 0,
-    rowFour: 0,
+    cards: [
+      { id: 1, value: 0 },
+      { id: 2, value: 0 },
+      { id: 3, value: 0 },
+      { id: 4, value: 0 },
+    ],
   };
 
-  handleClick = (action, numberofRow) => {
-    console.log("action", action, "numberrow", numberofRow);
+  handleClick = (action, id) => {
+    if (action === "delete") {
+      const updatedCards = this.state.cards.filter((filtered) => {
+        return id !== filtered.id;
+      });
+      console.log("updatedCards", updatedCards);
+
+      this.setState({
+        cards: updatedCards,
+      });
+    }
 
     if (action === "add") {
+      const cardId = this.state.cards.find((card) => {
+        return card.id === id;
+      });
+      cardId.value = cardId.value + 1;
+
+      const newCards = this.state.cards.filter((filtered) => {
+        return filtered.id !== cardId.id;
+      });
+
       this.setState({
-        [numberofRow]: this.state[numberofRow] + 1,
+        cards: [cardId, ...newCards],
       });
     }
 
     if (action === "substract") {
+      const cardId = this.state.cards.find((card) => {
+        return card.id === id;
+      });
+      cardId.value = cardId.value - 1;
+
+      const newCards = this.state.cards.filter((filtered) => {
+        return filtered.id !== cardId.id;
+      });
+
       this.setState({
-        [numberofRow]: this.state[numberofRow] - 1,
+        cards: [...newCards, cardId],
       });
     }
   };
 
   render() {
-    const { itemCounters, rowOne, rowTwo, rowThree } = this.state;
+    const { itemCounters } = this.state;
     console.log("state", this.state);
 
     return (
       <Wrapper>
         <NavBar />
-        <Counters handleClick={this.handleClick} />
+        <Counters handleClick={this.handleClick} cards={this.state.cards} />
       </Wrapper>
     );
   }
